@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
@@ -19,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.1",
     "multer": "^1.4.5-lts.1",
+    "multi": "^0.1.3",
     "nodemon": "^2.0.18",
     "validator": "^13.7.0"
   }

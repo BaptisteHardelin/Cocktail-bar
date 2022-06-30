@@ -1,0 +1,26 @@
+<%- include('./partials/header'); -%>
+
+<form action="/" method="POST" enctype="multipart/form-data">
+  <h2>Add a cocktail</h2>
+  <label for="name">Name</label>
+  <input type="text" name="name" required />
+  <label for="ingredientList"
+    >Ingredient List (Separate the ingredients with the space character)</label
+  >
+  <input type="text" name="ingredientList" required />
+  <label for="alchohol">Contains alchohol ?</label>
+  <input type="checkbox" name="alchohol" required />
+  <label for="image">Image of Cocktail</label>
+  <input type="file" name="image" required />
+  <button>Add cocktail</button>
+</form>
+
+<script>
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+</script>
+
+<%- include('./partials/footer'); -%>

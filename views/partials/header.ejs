@@ -2,8 +2,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; connect-src 'self';font-src 'self'; img-src 'self' data: https:; style-src 'self' ; script-src 'self'"
+    />
     <title>Cocktail bar</title>
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="shortcut icon" href="/cocktail-bar.png" type="image/x-icon" />
   </head>
   <body>
     <nav>
@@ -16,6 +21,8 @@
         <li><a href="/login">Log in</a></li>
         <li><a href="/signup" class="btn">Signup</a></li>
         <% } %>
+
+        <li><a href="/add-cocktail" class="btn">Add Cocktail</a></li>
       </ul>
     </nav>
   </body>
