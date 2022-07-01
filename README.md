@@ -1,5 +1,3 @@
-AUTH Routes
-
 <table>
     <thead>
         <tr>
@@ -33,6 +31,16 @@ AUTH Routes
             <td>/logout</td>
             <td>GET</td>
             <td>Log a user out</td>
+        </tr>
+        <tr>
+            <td>/add-cocktail</td>
+            <td>POST</td>
+            <td>Create a new Cocktail</td>
+        </tr>
+        <tr>
+            <td>/see-cocktails</td>
+            <td>GET</td>
+            <td>See all cocktails</td>
         </tr>
     </tbody>
 </table>
