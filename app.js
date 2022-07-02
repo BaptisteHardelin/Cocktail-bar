@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const CocktailRoute = require("./routes/cocktailRoutes");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 // middleware
 app.use(bodyParser.json());
@@ -38,5 +38,6 @@ mongoose
 // routes
 app.get("*", checkUser);
 app.get("/", requireAuth, (req, res) => res.render("home"));
+app.get("/cocktails", requireAuth, (req, res) => res.render("addCocktail"));
 app.use(authRoute);
 app.use("/api/cocktail/", CocktailRoute);

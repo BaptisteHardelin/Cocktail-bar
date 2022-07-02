@@ -1,25 +1,52 @@
 <%- include('./partials/header'); -%>
 
-<form action="/" method="POST" enctype="multipart/form-data">
+<form>
   <h2>Add a cocktail</h2>
   <label for="name">Name</label>
-  <input type="text" name="name" required />
+  <input type="text" name="cocktailName" required />
+
   <label for="ingredientList"
     >Ingredient List (Separate the ingredients with the space character)</label
   >
   <input type="text" name="ingredientList" required />
+
   <label for="alchohol">Contains alchohol ?</label>
-  <input type="checkbox" name="alchohol" required />
+  <input type="text" name="alchohol" required />
+
   <label for="image">Image of Cocktail</label>
   <input type="file" name="image" required />
   <button>Add cocktail</button>
 </form>
+<a href="/api/cocktail/cocktails">SEE Cocktails</a>
 
 <script>
   const form = document.querySelector("form");
-
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    const name = form.cocktailName.value;
+    const listIngredient = form.ingredientList.value;
+    const alchohol = form.alchohol.value;
+    const image = form.image.value;
+
+    try {
+      const result = await fetch("/api/cocktail/add-cocktails/", {
+        method: "post",
+        body: JSON.stringify({ name, listIngredient, alchohol, image }),
+        headers: {
+          "Content-Type": "application/json",
+          enctype: "multipart/form-data",
+        },
+      });
+
+      const data = await result.json();
+
+      if (data.message) {
+        location.assign("/");
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   });
 </script>
 
