@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const Cocktails = require("../models/Cocktails");
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -43,15 +42,4 @@ const checkUser = (req, res, next) => {
   }
 };
 
-// get all cocktails
-
-const getCocktails = async (req, res, next) => {
-  Cocktails.find().then((result) => {
-    console.log("result!!!!!", result);
-    res.send(result);
-  });
-
-  next();
-};
-
-module.exports = { requireAuth, checkUser, getCocktails };
+module.exports = { requireAuth, checkUser };

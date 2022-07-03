@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cocktails</title>
+  </head>
+  <body>
+    <h1>Cocktails</h1>
+    <% item.forEach(element => {%>
+    <p><%= element.cocktailName %></p>
+    <p><%= element.alcohol %></p>
+    <p><%= element.ingredient %></p>
+    <img src="<%= element.image %> " />
+    <%}); %>
+  </body>
+</html>

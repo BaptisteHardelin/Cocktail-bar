@@ -4,16 +4,17 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/authRoutes");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 const bodyParser = require("body-parser");
-const CocktailRoute = require("./routes/cocktailRoutes");
+const upload = require("./middleware/uploadCocktail");
+const cocktailModel = require("./models/cocktailSchema");
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 // middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use("uploads/", express.static("uploads"));
+app.use(express.static("uploads"));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -38,6 +39,37 @@ mongoose
 // routes
 app.get("*", checkUser);
 app.get("/", requireAuth, (req, res) => res.render("home"));
-app.get("/cocktails", requireAuth, (req, res) => res.render("addCocktail"));
+app.get("/add-cocktails", requireAuth, (req, res) => res.render("addCocktail"));
 app.use(authRoute);
-app.use("/api/cocktail/", CocktailRoute);
+
+app.get("/see-cocktails", (req, res) => {
+  res.render("cocktails");
+});
+
+app.post("/post", upload.single("image"), (req, res) => {
+  console.log("req.file", req.file);
+  const newCocktail = cocktailModel();
+  newCocktail.cocktailName = req.body.cocktailName;
+  newCocktail.alcohol = req.body.alcohol;
+  newCocktail.ingredient = req.body.ingredient;
+  newCocktail.image = req.file.filename;
+
+  newCocktail.save((err, doc) => {
+    if (!err) {
+      console.log("Save the new cocktail");
+      res.redirect("/see-cocktails");
+    } else {
+      console.log(err);
+    }
+  });
+});
+
+app.set("view engine", "ejs");
+
+app.get("/cocktails", (req, res) => {
+  cocktailModel.find().then((doc) => {
+    res.render("cocktails", {
+      item: doc,
+    });
+  });
+});
