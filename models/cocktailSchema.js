@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 let validateIngredient = function (ingredient) {
-  const re = /^[a-zA-Z\s]+\;[a-zA-Z\s]+$/;
-  return re.test(ingredient);
+  const regex = "[^A-Za-z0-9;]";
+  return regex.test(ingredient);
 };
 
 const cocktailSchema = new mongoose.Schema({
@@ -10,7 +10,7 @@ const cocktailSchema = new mongoose.Schema({
   alcohol: String,
   ingredient: {
     type: String,
-    validate: validateIngredient,
+    match: /^[a-z]+(?:;[a-z]+)*$/,
   },
   image: String,
 });
