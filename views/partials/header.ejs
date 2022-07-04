@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self' data: 'unsafe-inline' 'unsafe-hashes' 'unsafe-eval'; media-src *"
+      content="default-src * gap:; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src * data: blob: android-webview-video-poster:; style-src * 'unsafe-inline';"
     />
     <title>Cocktail bar</title>
     <link rel="stylesheet" href="/styles.css" />
@@ -17,14 +17,13 @@
         <% if(user) { %>
         <li>Welcome, <%= user.email %></li>
         <li><a href="/logout">Log out</a></li>
+        <a href="add-cocktails" class="btn">Add Cocktail</a>
         <% } else {%>
         <li><a href="/login">Log in</a></li>
         <li><a href="/signup" class="btn">Signup</a></li>
         <% } %>
 
-        <li>
-          <a href="add-cocktails" class="btn">Add Cocktail</a>
-        </li>
+        <li></li>
       </ul>
     </nav>
   </body>

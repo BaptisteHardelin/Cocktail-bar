@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cocktailSchema = new mongoose.Schema({
   cocktailName: String,
   alcohol: String,
-  ingredient: String,
+  ingredient: [String],
   image: String,
 });
 

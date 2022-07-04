@@ -46,27 +46,29 @@ app.get("/see-cocktails", (req, res) => {
   res.render("cocktails");
 });
 
-app.post("/post", upload.single("image"), (req, res) => {
+app.post("/post", requireAuth, upload.single("image"), (req, res) => {
   console.log("req.file", req.file);
   const newCocktail = cocktailModel();
   newCocktail.cocktailName = req.body.cocktailName;
   newCocktail.alcohol = req.body.alcohol;
   newCocktail.ingredient = req.body.ingredient;
-  newCocktail.image = req.file.filename;
+  if (req.file == undefined) {
+    newCocktail.image = req.body.image;
+  } else {
+    newCocktail.image = req.file.filename;
+  }
 
   newCocktail.save((err, doc) => {
     if (!err) {
       console.log("Save the new cocktail");
-      res.redirect("/see-cocktails");
+      res.redirect("/cocktails");
     } else {
       console.log(err);
     }
   });
 });
 
-app.set("view engine", "ejs");
-
-app.get("/cocktails", (req, res) => {
+app.get("/cocktails", requireAuth, (req, res) => {
   cocktailModel.find().then((doc) => {
     res.render("cocktails", {
       item: doc,
