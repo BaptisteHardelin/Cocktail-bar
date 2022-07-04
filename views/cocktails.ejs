@@ -1,6 +1,7 @@
 <%- include('./partials/header'); -%> <% item.forEach(element => {%>
 
 <div class="card">
+  <p class="center"><%= element.cocktailName %></p>
   <img
     src="<%= element.image %> "
     alt="cocktails"
@@ -8,11 +9,10 @@
     height="375px"
   />
   <div class="container">
-    <p><%= element.cocktailName %></p>
     <p><%= element.alcohol %></p>
     <% const ingredient = element.ingredient %> <% let array =
-    ingredient.toString().split(';') %> <% array.forEach(element => {%>
-    <ul>
+    ingredient.split(';') %> <% array.forEach(element => {%>
+    <ul class="">
       <li>- <%= element%></li>
     </ul>
     <%}); %>
@@ -21,18 +21,23 @@
 <%}); %> <%- include('./partials/footer'); -%>
 
 <style>
+  img {
+    width: 99.99%;
+  }
   .card {
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: 17%;
   }
-
-  .card:hover {
-    box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.2);
-  }
-
   .container {
     padding: 2px 18px;
+  }
+  p {
+    font-weight: bold;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
   }
 </style>

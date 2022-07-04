@@ -2,17 +2,26 @@
 
 <form action="/post" method="POST" enctype="multipart/form-data">
   <h2>Add a cocktail</h2>
-  <label for="name">Name</label>
   <label for="cocktailName">Cocktail Name</label>
   <input type="text" name="cocktailName" id="cocktailName" />
+
   <label for="alcohol">Alcohol</label>
-  <input type="text" name="alcohol" id="alcohol" />
+  <select name="alcohol" id="alcohol" required>
+    <option value="">--Please choose an option--</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
   <label for="ingredient">List ingredient separete ingredient with a ;</label>
   <input type="text" name="ingredient" id="ingredient" />
+  <p class="error"></p>
+
   <label for="image">Image from your computer</label>
   <input type="file" name="image" id="image" />
+
   <label for="image">Or Image from internet</label>
   <input type="text" name="image" id="image" />
+
   <button type="submit">Add Cocktail</button>
 </form>
 <a href="cocktails">SEE Cocktails</a>

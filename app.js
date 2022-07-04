@@ -46,6 +46,10 @@ app.get("/see-cocktails", (req, res) => {
   res.render("cocktails");
 });
 
+app.get("/error", (req, res) => {
+  res.render("errorIngredient");
+});
+
 app.post("/post", requireAuth, upload.single("image"), (req, res) => {
   console.log("req.file", req.file);
   const newCocktail = cocktailModel();
@@ -63,7 +67,7 @@ app.post("/post", requireAuth, upload.single("image"), (req, res) => {
       console.log("Save the new cocktail");
       res.redirect("/cocktails");
     } else {
-      console.log(err);
+      res.redirect("/error");
     }
   });
 });
