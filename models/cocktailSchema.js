@@ -10,7 +10,7 @@ const cocktailSchema = new mongoose.Schema({
   alcohol: String,
   ingredient: {
     type: String,
-    match: /^[a-z]+(?:;[a-z]+)*$/,
+    match: /^[a-zA-Z\s]+(?:;[a-zA-Z\s]+)*$/,
   },
   image: String,
 });
